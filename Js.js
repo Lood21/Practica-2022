@@ -23,7 +23,7 @@ class Graph {
     }
     dfs(startVertex) {
         let list = this.vertices;
-        let stack = [startVertex]; 
+        let stack = [startVertex];
         let visited = { [startVertex]: 1 };
         var enges = [];
         function handleVertex(vertex) {
@@ -111,10 +111,11 @@ class Graph {
         return { distance, previous }
     }
     findShortestPath(startVertex, finishVertex) {
+        console.log(graph);
         let result = this.bfs2(startVertex);
 
         if (!(finishVertex in result.previous))
-            throw new Error(`Нет пути из вершины ${startVertex} в вершину ${finishVertex}`);
+            throw new Error(`No way from ${startVertex} To ${finishVertex}`);
 
         let path = [];
 
@@ -131,6 +132,29 @@ class Graph {
     }
 }
 const graph = new Graph();
+function Dijkstra(matrix, start = 0) {
+    const rows = matrix.length,
+        cols = matrix[0].length;
+
+    if (rows !== cols || start >= rows) {
+
+    };
+
+    const distance = new Array(rows).fill(Infinity);
+    distance[start] = 0;
+
+    for (let i = 0; i < rows; i++) {
+        if (distance[i] < Infinity) {
+            for (let j = 0; j < cols; j++) {
+                if (matrix[i][j] + distance[i] < distance[j]) {
+                    distance[j] = matrix[i][j] + distance[i];
+                }
+            }
+            console.log(distance);
+        }
+    }
+    return distance;
+}
 function renderTable() {
     var sizematrix = document.getElementById("sizeMat");
     var value = sizematrix.options[sizematrix.selectedIndex].value;
@@ -151,7 +175,7 @@ function renderColumn(size) {
             var row = document.getElementById(`${"r" + i.toString()}`);
             row.innerHTML += `<td><input class="form-control" type="number" min="0" name="${i.toString() + j.toString()}" value="0"></td>`;
         }
-        graph.addVertex(`${i}`);
+        graph.addVertex(String.fromCharCode(i + 64));
     }
 }
 function changebuttons() {
@@ -169,18 +193,27 @@ function changebuttons() {
         `<option value="1">depth-first search</option>` +
         `<option value="2">breadth-first-search</option>` +
         `<option value="3">Finding the Shortest Path</option>` +
+        `<option value="4">Dijkstra</option>` +
         `</select>`;
     document.getElementById("sizeMat").id = "typeAlgorithm";
     button.remove();
     document.getElementById("Buttons").innerHTML += '<button id="actButton" onclick="algDo()">Do</button>';
 }
 function algDo() {
+    const matrix1 = [];
     for (var i = 0, row; row = matrix.rows[i]; i++) {
+        var rowk = []
         for (var j = 0, col; col = row.cells[j]; j++) {
             if (col.children[0].value > 0) {
-                graph.addEdge((i + 1).toString(), (j + 1).toString());
+                graph.addEdge(String.fromCharCode(i + 65), String.fromCharCode(j + 65));
+                rowk.push(parseInt(col.children[0].value))
+            }
+            else {
+
+                rowk.push(Infinity);
             }
         }
+        matrix1.push(rowk);
     }
     var typeAlgorith = document.getElementById("typeAlgorithm");
     var value = typeAlgorith.options[typeAlgorith.selectedIndex].value;
@@ -195,36 +228,49 @@ function algDo() {
         case '3':
             findTheShortestPath();
             break;
+        case '4':
+            dijkstraSearch(matrix1);
+            break;
     }
 }
 function depthFirstSearch() {
     start = document.getElementById("startVertex").value;
-    var result = graph.dfs(start.toString());
+    var result = graph.dfs(start);
     console.log(result);
     document.getElementById("result").innerHTML = result;
 }
 function breadthFirstSearch() {
     start = document.getElementById("startVertex").value;
-    var result = graph.bfs(start.toString());
+    var result = graph.bfs(start);
     console.log(result);
     document.getElementById("result").innerHTML = result;
 }
 function findTheShortestPath() {
     start = document.getElementById("startVertex").value;
     end = document.getElementById("finishVertex").value;
-    var result = graph.findShortestPath(start.toString(), end.toString());
+    console.log(end);
+    console.log(start);
+    var result = graph.findShortestPath(start, end);
     console.log(result);
     document.getElementById("result").innerHTML = result;
+}
+function dijkstraSearch(matrix1) {
+    start = document.getElementById("startVertex").value;
+    console.log(start.charCodeAt(0) - 65);
+    document.getElementById("result").innerHTML = Dijkstra(matrix1, start.charCodeAt(0) - 65);
 }
 function addStartVertexOpt(size) {
     startVertexGen = document.getElementById("startVertex");
     for (var i = 1; i < size; i++) {
-        startVertexGen.innerHTML += `<option value="${i}">${i}</option>`
+        var opt = String.fromCharCode(i + 64);
+        startVertexGen.innerHTML += `<option value="${opt}">${opt}</option>`
     }
 }
 function addFinishVertexOpt(size) {
     endVertexGen = document.getElementById("finishVertex");
     for (var i = 2; i <= size; i++) {
-        endVertexGen.innerHTML += `<option value="${i}">${i}</option>`
+        var opt = String.fromCharCode(i + 64);
+        endVertexGen.innerHTML += `<option value="${opt}">${opt}</option>`
+
     }
 }
