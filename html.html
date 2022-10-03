@@ -3,12 +3,22 @@
 
 <head>
     <link rel="stylesheet" href="Css.css">
+    <style>
+        @font-face {
+         font-family: Roboto;
+         src: url(Roboto-BoldItalic.ttf);
+        }
+       </style>
 </head>
 
 <body>
+    <header>
+
+    </header>
     <div id="Form">
+        <div id="textExpl">Choose amount of vertex</div>
         <div id="chooseHolder">
-            <select id="sizeMat" size="1">
+            <select id="sizeMat" class="options" size="1">
                 <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4" selected="selected">4</option>
@@ -21,17 +31,23 @@
             </select>
         </div>
         <div id="tableHolder">
-            <table>
+            <table id="table">
                 <tbody id="matrix">
                 </tbody>
             </table>
-        </div>
-        <div id="result">
+            <div id="resultHolder">
+                Result:
+                <div id="result">
+                </div>
+            </div>
         </div>
         <div id="Buttons">
             <button onclick="renderTable()" id="rendBut">Next</button>
         </div>
     </div>
+    <footer>
+        
+    </footer>
 </body>
 <script src="js.js">
 </script>

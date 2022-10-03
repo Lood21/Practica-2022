@@ -1,11 +1,115 @@
-.form-control{
-    height: 20px;
-    width: 20px;
-    border-radius: 4px;
-    text-align: center;
-    padding: 1px;
-    border: grey solid 1px;
+body {
+    margin: 0;
 }
-table{
+
+header {
+
+    width: 100%;
+    height: 100px;
+    background: #800095;
+}
+
+#Form {
+    margin: 41px auto;
+    width: 1000px;
+    height: 699px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 38px;
+    border: grey solid 1px;
+    padding: 38px;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+#textExpl {
+    font-size: xx-large;
+    font-family: 'Roboto', sans-serif;
+}
+
+.options {
+    text-align: center;
+    height: 50px;
+    border: 2px solid #9A9A9A;
+    box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    background: #FFFFFF;
+
+}
+
+#chooseHolder {
+    margin-bottom: 2px;
+}
+
+#sizeMat {
+    width: 100px;
+    font-size: xx-large;
+}
+
+#typeAlgorithm {
+    width: 255px;
+    font-size: large;
+}
+
+.vertex {
+    font-size: large;
+    width: 50px;
+    height: 50px;
+    margin-right: 2px;
+}
+
+.form-control {
+    min-width: 33px;
+    max-width: 3ch;
+    height: 33px;
+    font-size: x-large;
+    text-align: center;
+    background: #FFFFFF;
+    border: 2px solid #9A9A9A;
+    border-radius: 8px;
+}
+
+#table {
     border-spacing: 1px;
+    float: left;
+}
+
+#resultHolder{
+    float: right;
+    width: 450px;
+    height: 200px;
+    padding: 10px;
+    font-size: x-large;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    background: #5FA8FD;
+    color: #FFFFFF;
+    border: 2px solid #9A9A9A;
+    box-shadow: 5px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 46px;
+}
+
+#tableHolder {
+    height: 419px;
+    padding-bottom: 10px;
+}
+
+button {
+    width: 280px;
+    height: 70px;
+    border: 0;
+    background: #5FA8FD;
+    border-radius: 35px;
+    position: relative;
+    color: #FFFFFF;
+    font-size: x-large;
+    margin-top: 10px;
+}
+
+
+footer {
+    width: 100%;
+    height: 200px;
+
+    background: #800095;
 }

@@ -173,7 +173,7 @@ function renderColumn(size) {
     for (var i = 1; i <= size; i++) {
         for (var j = 1; j <= size; j++) {
             var row = document.getElementById(`${"r" + i.toString()}`);
-            row.innerHTML += `<td><input class="form-control" type="number" min="0" name="${i.toString() + j.toString()}" value="0"></td>`;
+            row.innerHTML += `<td><input class="form-control" type="number" min="0" max="100" name="${i.toString() + j.toString()}" value="0"></td>`;
         }
         graph.addVertex(String.fromCharCode(i + 64));
     }
@@ -183,13 +183,13 @@ function changebuttons() {
     var value = sizematrix.options[sizematrix.selectedIndex].value;
     var button = document.getElementById("rendBut");
     var chooseHolder = document.getElementById("chooseHolder");
-    chooseHolder.innerHTML += `<select id="startVertex" size="1">` +
+    chooseHolder.innerHTML += `<select id="startVertex" class="options vertex" size="1">` +
         `</select>`
-    chooseHolder.innerHTML += `<select id="finishVertex" size="1">` +
+    chooseHolder.innerHTML += `<select id="finishVertex" class="options vertex"  size="1">` +
         `</select>`
     addStartVertexOpt(value);
     addFinishVertexOpt(value);
-    document.getElementById("sizeMat").innerHTML = `<select id="typeAlgorithm" size="1">` +
+    document.getElementById("sizeMat").innerHTML = `<select id="typeAlgorithm" class="options" size="1">` +
         `<option value="1">depth-first search</option>` +
         `<option value="2">breadth-first-search</option>` +
         `<option value="3">Finding the Shortest Path</option>` +
