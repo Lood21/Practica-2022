@@ -114,8 +114,14 @@ class Graph {
         console.log(graph);
         let result = this.bfs2(startVertex);
 
-        if (!(finishVertex in result.previous))
+        if (!(finishVertex in result.previous)){
+            start = document.getElementById("startVertex").value;
+            end = document.getElementById("finishVertex").value;
+            document.getElementById("result").innerHTML=`No way from ${start} to ${end}`;
             throw new Error(`No way from ${startVertex} To ${finishVertex}`);
+            
+        }
+            
 
         let path = [];
 
@@ -256,8 +262,16 @@ function findTheShortestPath() {
 }
 function dijkstraSearch(matrix1) {
     start = document.getElementById("startVertex").value;
+    end = document.getElementById("finishVertex").value;
     console.log(start.charCodeAt(0) - 65);
-    document.getElementById("result").innerHTML = Dijkstra(matrix1, start.charCodeAt(0) - 65);
+    var arr = Dijkstra(matrix1, start.charCodeAt(0) - 65);
+    var res=arr[arr.length-1];
+    if(res==Infinity){
+        document.getElementById("result").innerHTML=`No way from ${start} to ${end}`;
+    }
+    else{
+        document.getElementById("result").innerHTML = `From ${start} to ${end}-> ${res}`;
+    }
 }
 function addStartVertexOpt(size) {
     startVertexGen = document.getElementById("startVertex");
